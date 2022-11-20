@@ -44,28 +44,45 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
-function game(){
-    let count = 0;
-    let numPlayerWin = 0;
-    while(count<5){
-        let computerSelection = getComputerChoice();
-        let playerSelection = prompt("Select Rock | Paper | Scissors");
+function game(playerSelection){
 
-        let result = playRound(playerSelection,computerSelection);
+    // while(count<5){
+    let computerSelection = getComputerChoice();
+    // let playerSelection = prompt("Select Rock | Paper | Scissors");
 
-        let temp = result.split(" ");
-        if(temp[1] == "Won!"){
-            numPlayerWin ++;
+    let result = playRound(playerSelection,computerSelection);
+
+    let temp = result.split(" ");
+    if(temp[1] == "Won!"){
+        numPlayerWin ++;
+    }
+    alert(result);
+    console.log(result);
+    count ++;
+    // }
+    let scoreTxt = document.querySelector(".results");
+    scoreTxt.textContent = "Score: " + numPlayerWin + "/" + count;
+    if(count === 5){
+        if(numPlayerWin>2){
+            alert("GameOver! You won with a score of " + numPlayerWin + "/5 !");
+        }else{
+            alert("GameOver! You lost with a score of " + numPlayerWin + "/5 !");
         }
-        alert(result);
-        console.log(result);
-        count ++;
+        //restart game
+        count = 0;
+        numPlayerWin = 0;
     }
-    if(numPlayerWin>2){
-        alert("GameOver! You won with a score of " + numPlayerWin + "/5 !");
-    }else{
-        alert("GameOver! You lost with a score of " + numPlayerWin + "/5 !");
-    }
-}
 
-game();
+}
+let count = 0;
+let numPlayerWin = 0;
+
+let playerBtnRock = document.querySelector("#playerRock");
+playerBtnRock.addEventListener('click',function(){game("Rock")});
+
+let playerBtnPaper = document.querySelector("#playerPaper");
+playerBtnPaper.addEventListener('click',function(){game("Paper")});
+
+let playerBtnScissors = document.querySelector("#playerScissors");
+playerBtnScissors.addEventListener('click',function(){game("Scissors")});
+

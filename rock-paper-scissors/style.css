@@ -1,0 +1,16 @@
+.player_sel{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.player_btn{
+    width: 30%;
+    height: 100px;
+}
+
+.results{
+    text-align: center;
+    font-size: larger;
+    font-weight: bold;
+}
