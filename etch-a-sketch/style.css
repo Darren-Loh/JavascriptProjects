@@ -1,0 +1,33 @@
+.grid_container{
+    display: inline-grid;
+    width: 500px;
+    height: 500px;
+}
+
+.grid_ele{
+    border-style: solid;
+    /* height: 50px;
+    width: 50px; */
+    transition: all 0.3s;
+}
+
+.grid_ele_hover{
+    background-color: aquamarine;
+    opacity: 50%;
+}
+
+.grid_ele_click{
+    background-color: blue;
+}
+
+.top_btn{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.grid_btn{
+    height: 50px;
+    font-size: larger;
+}
