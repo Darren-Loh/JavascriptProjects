@@ -1,9 +1,9 @@
 function add(a,b){
-    return a+b;
+    return Math.round((a+b)*1000)/1000;
 }
 
 function subtract(a,b){
-    return a-b;
+    return Math.round((a-b)*1000)/1000;
 }
 
 function multiply(a,b){
@@ -51,6 +51,7 @@ function pressNumBtn(num_str){
 }
 
 function pressOpBtn(op_str){
+    decimalAlrPressed = false;
     if(display_num2 !== null){
         //once 2nd number typed in, first compute before changing operator
         operate();
@@ -97,28 +98,54 @@ function operate(){
             display_op = null;
             return;
         }
-        output = divide(display_num,display_num2);
+        output = divide(+display_num,+display_num2);
     }
     else if (display_op === "X"){
-        output = multiply(display_num,display_num2);
+        output = multiply(+display_num,+display_num2);
     }
     else if (display_op === "–"){
-        output = subtract(display_num,display_num2);
+        output = subtract(+display_num,+display_num2);
     }
     else if (display_op === "+"){
-        output = add(display_num,display_num2);
+        output = add(+display_num,+display_num2);
     }
     changeDisplay(output);
     display_num = output;
     display_num2 = null;
     display_op = null;
+    decimalAlrPressed = false;
 }
 
+function pressDecimal(){
+    if (display_op === null){
+        //still typing first number
+        if(!decimalAlrPressed){
+            //if decimal hasn't been pressed
+            display_num = ""+display_num+".";
+            decimalAlrPressed = true;
+            changeDisplay(display_num);
+        }
+    }
+    else{
+        //typing second number after op selected
+        if(!decimalAlrPressed){
+            //if decimal hasn't been pressed
+            if(display_num2===null){
+                display_num2 = 0; //first set to 0 to allow direct pressing of decimal first
+            }
+            display_num2 = ""+display_num2+".";
+            decimalAlrPressed = true;
+            changeDisplay(""+ display_num + " " + display_op +" "+display_num2);
+
+        }
+    }
+}
 //display log to track what numbers is pressed
 let display_num = 0;
 let display_num2 = null;
 let display_op = null;
 const displayDiv = document.querySelector(".top_screen");
+let decimalAlrPressed = false; //global var to check if decimal was pressed
 
 //number
 let btn_num = Array.from(document.querySelectorAll(".number"));;
@@ -143,3 +170,7 @@ clear_btn.addEventListener("click",clearDisplay);
 //equal button
 const equal_btn = document.querySelector(".equal");
 equal_btn.addEventListener("click",operate);
+
+//decimal
+const decimal_btn = document.querySelector(".decimal");
+decimal_btn.addEventListener("click",pressDecimal);
