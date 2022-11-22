@@ -1,0 +1,38 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.top_screen{
+    display: flex;
+    border-style: solid;
+    width: 500px;
+    justify-content: right;
+    align-items: flex-end;
+    padding: 10px;
+    height: 100px;
+    font-size: 50px;
+
+}
+
+.bottom{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    width: 530px;
+    height: 200px;
+}
+
+.clear{
+    width: 530px;
+    height: 50px;
+}
+
+.op, .clear{
+    background-color: lightgray;
+}
+
+.equal{
+    background-color: lightblue;
+}
